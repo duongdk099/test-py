@@ -1,0 +1,27 @@
+# ===================
+# Common / Shared
+# ===================
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environments
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Nuxt Fonts
+.data
+
+# Claude
+.claude
+# Precommit hooks: ruff cache
+.ruff_cache
