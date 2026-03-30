@@ -8,7 +8,7 @@ from weather.data_generators.national_indicator_fake import (
 def test_fake_generator_day_granularity_returns_all_days_inclusive():
     payload = generate_fake_national_indicator(
         date_start=dt.date(2024, 1, 1),
-        date_end=dt.date(2024, 1, 7),
+        date_end=dt.date(2026, 1, 7),
         granularity="day",
     )
 
