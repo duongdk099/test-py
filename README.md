@@ -2,6 +2,8 @@
 
 Projet Data For Good - Saison 14
 
+[![CI](https://github.com/duongdk099/test-py/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/duongdk099/test-py/actions/workflows/ci.yml)
+
 ## Structure du projet
 
 ```
