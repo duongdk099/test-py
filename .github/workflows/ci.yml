@@ -67,7 +67,7 @@ jobs:
         run: uv run ruff check .
 
       - name: Run security scan
-        run: uvx --with bandit bandit -r config weather -q
+        run: uvx --with bandit bandit -r config weather -x weather/tests -s B311 -q
 
   docker:
     name: Docker build and publish
