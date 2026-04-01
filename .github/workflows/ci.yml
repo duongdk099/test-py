@@ -69,6 +69,15 @@ jobs:
       - name: Run security scan
         run: uvx --with bandit bandit -r config weather -x weather/tests -s B311 -q
 
+      - name: Run Trivy scan (filesystem)
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: ./backend
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+
   docker:
     name: Docker build and publish
     runs-on: ubuntu-latest

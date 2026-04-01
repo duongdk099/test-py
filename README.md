@@ -18,6 +18,30 @@ Consultez les README de chaque sous-projet :
 - [Backend](backend/README.md)
 - [Frontend](frontend/README.md)
 
+## Deploiement production (images durcies)
+
+Les services applicatifs utilisent des images Docker Hub durcies :
+
+- Python (backend) : `bitnami/python:latest`
+- Node.js + npm (frontend build/runtime) : `bitnami/node:latest`
+
+Ces images proviennent d'un publisher verifie (Bitnami) et sont maintenues comme images "Secure".
+Pour une reproductibilite maximale, il est recommande de pinner ces images par digest en CI/CD.
+
+### Lancer en mode production
+
+```bash
+# A la racine du projet
+docker compose build --pull backend frontend
+docker compose up -d
+```
+
+Notes :
+
+- le backend et le frontend ne sont plus exposes sur des ports hote ; l'entree se fait via Nginx (`http://localhost`)
+- Prometheus reste expose sur `http://localhost:9090`
+- renseigner une vraie valeur de `SECRET_KEY`, des `ALLOWED_HOSTS` explicites et un mot de passe base de donnees robuste dans `.env`
+
 ## Contribuer
 
 Ce projet fait partie de la saison 14 de Data For Good.
@@ -56,11 +80,11 @@ git checkout -b <type>/(<scope>/)?<description-courte>
 
 Convention de nommage des branches :
 
-* `feat/scope/nom-feature` : nouvelle fonctionnalité
-* `fix/scope/nom-bug` : correction de bug
-* `docs/sujet` : documentation
-* `refactor/sujet` : refactoring de code
-* `chore/sujet` : tâche de maintenance
+- `feat/scope/nom-feature` : nouvelle fonctionnalité
+- `fix/scope/nom-bug` : correction de bug
+- `docs/sujet` : documentation
+- `refactor/sujet` : refactoring de code
+- `chore/sujet` : tâche de maintenance
 
 Exemple : `feat/itn/ajout-carte-meteo` ou `fix/ecarts-normales/erreur-chargement-donnees`
 
@@ -68,9 +92,9 @@ Exemple : `feat/itn/ajout-carte-meteo` ou `fix/ecarts-normales/erreur-chargement
 
 Un commit atomique = une seule modification logique. Cela permet de :
 
-* Faciliter la relecture du code
-* Simplifier un éventuel rollback
-* Garder un historique clair
+- Faciliter la relecture du code
+- Simplifier un éventuel rollback
+- Garder un historique clair
 
 ```bash
 git add <fichiers-concernés>
@@ -79,12 +103,12 @@ git commit -m "<type>: (<scope>:)? <description>"
 
 Format des messages de commit :
 
-* `feat: itn: ajoute le composant carte météo`
-* `fix: ecarts normales: corrige l'affichage des températures négatives`
-* `docs: readme: mise à jour installation`
-* `refactor: parser: simplifie la logique de parsing`
-* `test: parser: ajoute les tests unitaires`
-* `chore: npm: met à jour les dépendances`
+- `feat: itn: ajoute le composant carte météo`
+- `fix: ecarts normales: corrige l'affichage des températures négatives`
+- `docs: readme: mise à jour installation`
+- `refactor: parser: simplifie la logique de parsing`
+- `test: parser: ajoute les tests unitaires`
+- `chore: npm: met à jour les dépendances`
 
 Vous n'êtes pas obligé d'utiliser le terminal, vous pouvez utiliser n'importe quelle interface graphique, notamment celle de VSCode et JetBrains.
 
@@ -96,9 +120,9 @@ git push origin <nom-de-ta-branche>
 
 Puis sur GitHub, créer une PR vers `main` en :
 
-* Donnant un titre clair et descriptif
-* Remplissant le template de PR
-* Assignant des reviewers
+- Donnant un titre clair et descriptif
+- Remplissant le template de PR
+- Assignant des reviewers
 
 #### 4. **Review de code**
 
@@ -106,15 +130,15 @@ Chaque PR doit être relue par au moins une personne avant d'être mergée.
 
 En tant que reviewer :
 
-* Vérifier que le code fonctionne et respecte les conventions du projet
-* Poser des questions si quelque chose n'est pas clair
-* Proposer des améliorations de manière constructive
+- Vérifier que le code fonctionne et respecte les conventions du projet
+- Poser des questions si quelque chose n'est pas clair
+- Proposer des améliorations de manière constructive
 
 En tant qu'auteur :
 
-* Répondre aux commentaires
-* Effectuer les modifications demandées
-* Demander une nouvelle review si nécessaire
+- Répondre aux commentaires
+- Effectuer les modifications demandées
+- Demander une nouvelle review si nécessaire
 
 #### 5. **Merge avec squash commit**
 
@@ -122,7 +146,7 @@ Une fois la PR approuvée, on merge en utilisant **"Squash and merge"** sur GitH
 
 ### Bonnes pratiques
 
-* **Synchroniser régulièrement** sa branche avec `main` pour éviter les conflits :
+- **Synchroniser régulièrement** sa branche avec `main` pour éviter les conflits :
 
 ```bash
 git checkout main
@@ -131,9 +155,9 @@ git checkout <ta-branche>
 git rebase main
 ```
 
-* **Ne jamais pusher directement sur** `**main**`
-* **Garder ses PRs petites** : une PR = une fonctionnalité ou un fix. Les grosses PRs sont difficiles à relire
-* **Tester son code** avant de pousser
+- **Ne jamais pusher directement sur** `**main**`
+- **Garder ses PRs petites** : une PR = une fonctionnalité ou un fix. Les grosses PRs sont difficiles à relire
+- **Tester son code** avant de pousser
 
 ### :male_technologist:Éditeur de code
 
